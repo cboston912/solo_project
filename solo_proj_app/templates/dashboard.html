@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+    <!-- <script src='main.js'></script> -->
+</head>
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h2>Welcome {{user.first_name}} {{user.last_name}}</h2>
+        </div>
+        <div class="nav">
+            {% if user.id == request.session.user_id %}
+                <a href="/dashboard">Dashboard</a> | <a href="/profile/{{user.id}}">User Profile</a> | <a href="forum">User Forum</a> | <a href="logout">Logout</a>
+            {% endif %}
+        </div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="add_post">
+            <h2>Create a Post:</h2>
+            <form action="/add_post" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <textarea name="post" cols="80" rows="6"></textarea>
+                <input type="image" src="{{ Wall_Post.post_pic.url }}" alt="">
+                <br>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <div class="posts">
+            <h2>Current Posts:</h2>
+            {% for post in wall_posts %}
+                <div class="wall_posts">
+                    <h4>"{{post.post}}"</h4>
+                    <p>Post by: <a href="/profile/{{post.poster.id}}">{{post.poster.first_name}} {{post.poster.last_name}}</a> - {{post.created_at}}</p>
+                    <div class="post_likes">
+                        <form action="/like/{{post.id}}">
+                            <button type="submit">{{post.users_like_wall_post.all.count}} Likes</button>
+                        </form>
+                    </div>
+                    {% for comment in post.post_comments.all %}
+                        <div class="post_comments">
+                            <!-- <h3>Comments:</h3> -->
+                            <p>"{{comment.comment}}</p>
+                            <p>"Comment by {{comment.poster.first_name}} {{comment.poster.last_name}} - {{comment.created_at}}</p>
+                        </div>
+                    {% endfor %}
+                    <form action="/post_comment/{{post.id}}" method="POST">
+                    {% csrf_token %}
+                        <textarea name="comment" cols="70" rows="6"></textarea>
+                        <br>
+                        <button type="submit">Post comment</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

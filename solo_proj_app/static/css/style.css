@@ -1,0 +1,140 @@
+#wrapper_main{
+    width: 1000px;
+    height: 900px;
+    background: url("/static/images/background.jpg") no-repeat;
+    background-size: 1000px;
+}
+
+#wrapper_main h1{
+    color: whitesmoke;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.login{
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.login button{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.login a{
+    color: whitesmoke;
+}
+
+#wrapper{
+    width: 1000px;
+    height: auto;
+    outline: 1px black solid;
+    background-color: rgb(3, 155, 155);
+}
+
+.nav{
+    margin-left: 200px;
+    margin-top: 15px;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.header{
+    color: whitesmoke;
+    padding-left: 40px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+.nav a:link{
+    color: white;
+    padding: 20px;
+}
+
+.posts h2{
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+p{
+    color: whitesmoke;
+}
+
+.add_post{
+    margin-left: 50px;
+}
+
+.add_post textarea{
+    resize: both;
+    /* background-color: lightgray; */
+    outline: 1px solid black;
+    color: black;
+}
+
+.wall_posts{
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+.wall_posts a:link{
+    color: whitesmoke;
+}
+
+.wall_posts h4{
+    width: 800px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    outline: solid 1px darkgray;
+}
+
+.wall_posts p{
+    display: inline-block;
+}
+
+.post_likes{
+    display: inline-block;
+}
+
+.post_comments{
+    padding-left: 50px;
+    font-style: italic;
+}
+
+.wall_posts textarea{
+    margin-left: 40px;
+}
+
+.wall_posts button{
+    margin-left: 40px;
+}
+
+.user_posts{
+    padding-left: 40px;
+
+}
+
+.user_posts h2{
+    color: whitesmoke;
+}
+
+.user_posts button{
+    margin: 5px;
+}
+
+.register{
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.register button{
+    margin-top: 10px;
+}
+
+
+
+

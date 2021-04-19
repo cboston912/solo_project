@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>User Profile</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h1>USER PROFILE</h1>
+            <h2>Welcome {{user.first_name}} {{user.last_name}}</h2>
+        </div>
+        <div class="nav">
+            {% if user.id == request.session.user_id %}
+                <a href="/dashboard">Dashboard</a> | <a href="/profile/{{user.id}}">User Profile</a> | <a href="/forum">User Forum</a> | <a href="logout">Logout</a>
+            {% endif %}
+        </div>
+        <div class="user_posts">
+            <h2>Dashboard Activity</h2>
+            {% for post in user.user_posts.all %}
+                <p>{{post.post}} posted {{post.created_at}}</p>
+                {% for comment in post.post_comments.all %}
+                    <div class="post_comments">
+                        <p>"{{comment.comment}}</p>
+                        <p>"Comment by {{comment.poster.first_name}} {{comment.poster.last_name}} - {{comment.created_at}}</p>
+                        <form action="/delete_comment/{{comment.id}}" method="POST">
+                            {% csrf_token %}
+                                <button type="submit">Delete Comment</button>
+                        </form>
+                    </div>
+                {% endfor %}
+                <form action="/delete_post/{{post.id}}" method="POST">
+                {% csrf_token %}
+                    <button type="submit">Delete Post</button>
+                </form>
+            {% endfor %}
+        </div>
+        
+
+    </div>
+</body>
+</html>

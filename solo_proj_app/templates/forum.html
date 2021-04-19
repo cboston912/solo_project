@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>USER FORUM</title>
+    {% load static %}
+    <link rel='stylesheet' href='{% static "css/style.css" %}'>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="header">
+            <h1>USER FORUM</h1>
+            <h2>Welcome {{user.first_name}} {{user.last_name}}</h2>
+        </div>
+        <div class="nav">
+            {% if user.id == request.session.user_id %}
+                <a href="/dashboard">Dashboard</a> | <a href="/profile/{{user.id}}">User Profile</a> | <a href="forum">User Forum</a> | <a href="logout">Logout</a>
+            {% endif %}
+        </div>
+                <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="forum_post">
+            <h3>Post your forum questions here:</h3>
+            <form action="/add_forum_post" method="POST">
+            {% csrf_token %}
+            <textarea name="post" cols="80" rows="6"></textarea>
+            <br>
+            <button type="submit">Post Forum</button>
+            </form>
+        </div>
+        <h2>Forum Posts:</h2>
+        {% for forum_post in forum_posts %}
+            <div class="wall_posts">
+                <p><a href="/profile/{{forum_post.poster.id}}">{{forum_post.poster.first_name}} {{forum_post.poster.last_name}}</a></p>
+                <p>{{forum_post.forum_post}}</p>
+                <p>{{forum_post.created_at}}</p>
+            </div>
+        {% endfor %} -->
+    </div>
+    
+</body>
+</html>
